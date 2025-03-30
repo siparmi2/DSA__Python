@@ -1,1 +1,1 @@
-Solving LeetCode Problems in Python!
+Solving DSA Problems in Python!
