@@ -57,7 +57,9 @@ def RomanNumeralReduction(s):
     return int_to_roman(total)
 
 
-# ✅ Test cases
+# Test cases
+print(RomanNumeralReduction("IIIIII"))  # Output: "VI"
+print(RomanNumeralReduction("VI"))  # Output: "VI"
 print(RomanNumeralReduction("LLLXXXVVVV"))  # Output: "CC"
 print(RomanNumeralReduction("XXX"))  # Output: "XXX" (already shortest)
 print(RomanNumeralReduction("IIIII"))  # Output: "V"
