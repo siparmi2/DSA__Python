@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        # Edge case: single node tree
+        if not root.right and not root.left:
+            return 1
+
+        goodnodes = 0
+
+        # Helper function to traverse and count good nodes
+        def findGoodNodes(maxValSoFar, node):
+            if node:
+                nonlocal goodnodes
+                # A node is good if it's greater than or equal to all previously visited nodes
+                if node.val >= maxValSoFar:
+                    goodnodes += 1
+                # Update the max value seen so far and continue DFS
+                findGoodNodes(max(maxValSoFar, node.val), node.left)
+                findGoodNodes(max(maxValSoFar, node.val), node.right)
+
+        # Start DFS from the root
+        findGoodNodes(root.val, root)
+        return goodnodes

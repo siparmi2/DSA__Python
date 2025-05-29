@@ -1,0 +1,33 @@
+from collections import deque
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        # Queue will store pairs of (node, max value seen along the path to that node)
+        queue = deque()
+        queue.append((root, root.val))
+        count = 0  # To count good nodes
+
+        while queue:
+            node, maxSoFar = queue.popleft()
+
+            # A node is 'good' if its value is >= max value seen so far on the path
+            if node.val >= maxSoFar:
+                count += 1
+
+            # Update the max value for the next level of children
+            newMax = max(maxSoFar, node.val)
+
+            # Add left and right children to the queue with updated max value
+            if node.left:
+                queue.append((node.left, newMax))
+            if node.right:
+                queue.append((node.right, newMax))
+
+        return count
